@@ -1,0 +1,36 @@
+{
+  "name": "projeto-boleria",
+  "version": "1.0.0",
+  "description": "projeto do módulo de sql",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larissadalimar/la-boleria-api.git"
+  },
+  "keywords": [
+    "boleria",
+    "nodejs",
+    "express",
+    "postgresql",
+    "sql"
+  ],
+  "author": "Larissa Dalimar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/larissadalimar/la-boleria-api/issues"
+  },
+  "homepage": "https://github.com/larissadalimar/la-boleria-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0"
+  }
+}
