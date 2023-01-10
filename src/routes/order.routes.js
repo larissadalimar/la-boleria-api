@@ -6,7 +6,7 @@ import verifyClientExists from "../middlewares/verifyClientExists.middleware.js"
 
 const router = Router();
 
-router.post("/orders", orderValidation, create);
+router.post("/orders", orderValidation, verifyClientExists, create);
 router.get("/orders", getAll);
 router.get("/orders/:id", getOne);
 router.get("/clients/:id/orders", verifyClientExists, getOrdersByClient);

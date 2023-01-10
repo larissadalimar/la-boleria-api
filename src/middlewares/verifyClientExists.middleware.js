@@ -1,4 +1,4 @@
-import clientRepository from "../repositories/client.repository";
+import clientRepository from "../repositories/client.repository.js";
 
 export default async function verifyClientExists(req, res, next){
 

@@ -1,4 +1,4 @@
-import { connectionDB } from "../database/db";
+import { connectionDB } from "../database/db.js";
 
 async function createCake(cake){
 
@@ -29,7 +29,7 @@ async function verifyCake(cakeId){
         return (cakeExists.rowCount > 0)
 
     } catch (error) {
-        
+
         console.log(error);
     }
 }

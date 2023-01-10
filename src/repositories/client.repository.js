@@ -10,7 +10,7 @@ async function verifyClient(clientId){
 
     try {
         
-        const clientExists = await connectionDB.query("SELECT * FROM clients id=$1;", [clientId]);
+        const clientExists = await connectionDB.query("SELECT * FROM clients WHERE id=$1;", [clientId]);
 
         return (clientExists.rowCount > 0);
 
