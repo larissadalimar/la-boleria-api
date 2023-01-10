@@ -1,6 +1,6 @@
 import { clientSchema } from "../models/client.model.js";
 
-export function clientValidation(req, res, next){
+export default function clientValidation(req, res, next){
 
     const client = req.body;
     

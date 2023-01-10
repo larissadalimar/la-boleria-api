@@ -6,8 +6,22 @@ async function createClient(client){
 
 }
 
+async function verifyClient(clientId){
+
+    try {
+        
+        const clientExists = await connectionDB.query("SELECT * FROM clients id=$1;", [clientId]);
+
+        return (clientExists.rowCount > 0);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const clientRepository = {
-    createClient
+    createClient,
+    verifyClient
 }
 
 export default clientRepository;
