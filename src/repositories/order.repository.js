@@ -10,8 +10,13 @@ async function createOrder(order){
 async function getAll(date){
 
     return date? 
-    await connectionDB.query(`SELECT orders.*, clients.* as client, cakes.* as cake FROM orders JOIN clients ON clients.id = orders."clientId" JOIN cakes ON cakes.id = orders."cakeId" WHERE "createdAt"=$1;`, [date]) :
-    await connectionDB.query(`SELECT orders.id as "orderId", orders.quantity, orders."totalPrice", orders."createdAt", to_json(clients.*) as client, to_json(cakes.*) as cake 
+
+    await connectionDB.query(`SELECT to_json(clients.*) as client,  
+    json_build_object('id', cakes.id, 'name', cakes.name, 'price', round(cakes.price,2)::varchar(255), 'description', cakes.description, 'image', cakes.image) as cake,
+     orders.id as "orderId", to_char(orders."createdAt", 'YYYY-MM-DD HH24:MI') as "createdAt", orders.quantity, trunc(cast(orders."totalPrice"::float8 as numeric), 2)::float as "totalPrice"
+    FROM orders JOIN clients ON clients.id = orders."clientId" JOIN cakes ON cakes.id = orders."cakeId" WHERE "createdAt"::date = $1;`, [date]) :
+
+    await connectionDB.query(`SELECT to_json(clients.*) as client,  to_json(cakes.*) as cake, orders.id as "orderId", to_char(orders."createdAt", 'YYYY-MM-DD HH24:MI') as "createdAt", orders.quantity, orders."totalPrice"
     FROM orders JOIN clients ON clients.id = orders."clientId" JOIN cakes ON cakes.id = orders."cakeId";`);
 }
 

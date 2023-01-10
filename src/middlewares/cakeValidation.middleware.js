@@ -8,9 +8,10 @@ export default async function cakeValidation(req, res, next){
     const validation = cakeSchema.validate(cake, {abortEarly: false});
 
     if(validation.error){
-        return res.status(400).send(
-            validation.error.details.map(e => e.message)
-        )
+        const errors =  validation.error.details.map(e => e.message);
+        
+        if(errors.length === 1 && errors[0].includes('image')) return res.status(422).send(errors);
+        else return res.status(400).send(errors);
     }
 
     try {
